@@ -7,8 +7,7 @@ let productImage = null;
 function ready() {
   console.log("DOM loaded");
 
-  const buttons = document.querySelectorAll("button");
-  console.log(buttons);
+  const buttons = document.querySelectorAll(".add-to-cart");
   buttons.forEach((button) => {
     button.addEventListener("click", buy);
   });
@@ -25,14 +24,30 @@ function buy() {
 
 function cart() {
   const cart = document.querySelector(".cart");
-  const cartItems = cart.querySelectorAll(".cart-items");
   const cartItem = document.createElement("div");
-  cartItem.classList.add("cart-item");
-  cartItem.innerHTML = `<div class="cart-item-info"><h3>${productCard}:</h3><span>${productPrice}</span></div>`;
-  cartItems[0].appendChild(cartItem);
+  const cartItems = cart.querySelectorAll(".cart-items");
+  const cartButton = cart.querySelector(".cart-checkout");
+
+  // переоброзование в число
+
+  const cartTotalElement = cart.querySelector(".cart-price");
+  const cartTotal = parseInt(cartTotalElement.innerText) || 0;
   
-  const cartPrice = document.getElementById("cart-price").innerText; 
-  cartPrice = innerText.replace("", "");
-  cartPrice = null; 
-  console.log(cartPrice);
+  
+  cartItem.classList.add("cart-item");
+  cartItem.innerHTML = `<div class="cart-item-info"><h3>${productCard}:</h3><span class="cart-product-price">${productPrice}</span></div>`;
+  const numericProductPrice = parseInt(productPrice.replace(/[^\d]/g, "")) || 0;
+  cartItems[0].appendChild(cartItem);
+
+  var newTotal = cartTotal + numericProductPrice;
+  cartTotalElement.innerText = newTotal;
+
+  cartButton.addEventListener("click", function () {
+    alert("Thank you for your order!");
+
+    cartItems[0].innerHTML = "";
+    newTotal = 0;
+    cartTotalElement.innerText = newTotal;
+  })
+
 }
