@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html style="background-color: #dadada;" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="reset.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#">Продукты</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Контакты</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero" style="background-color: #dadada;">
+        <h1>
+          Добро пожаловать в наш интернет-магазин! Здесь вы найдете широкий
+          ассортимент товаров по доступным ценам. Мы гарантируем высокое
+          качество и быструю доставку. Приятных покупок!
+        </h1>
+      </section>
+      <section class="products">
+        <h2>Наши продукты</h2>
+        <div class="product-list">
+          <div class="product-item">
+            <img src="https://avatars.mds.yandex.net/i?id=dcd0fcd448783710920abca372c4a2ee305499615bd6e215-12489030-images-thumbs&n=13" alt="Product 1" />
+            <h3>Продукт 1</h3>
+            <p>Описание продукта 1</p>
+            <span class="price">Цена: 1000 руб.</span>
+            <button class="add-to-cart">Добавить в корзину</button>
+          </div>
+          <div class="product-item">
+            <img src="https://mebeldavinci.ru/upload/resize_cache/iblock/78c/600_600_140cd750bba9870f18aada2478b24840a/ti4ci1rvdyxlpyh5urxnb7xemv83v17n.jpg" alt="Product 2" />
+            <h3>Продукт 2</h3>
+            <p>Описание продукта 2</p>
+            <span class="price">Цена: 2000 руб.</span>
+            <button class="add-to-cart">Добавить в корзину</button>
+          </div>
+          <div class="product-item">
+            <img src="https://mebeldavinci.ru/upload/resize_cache/iblock/a7d/600_600_140cd750bba9870f18aada2478b24840a/541sg0er0x2ygt10ytwsrizttjpvb3q5.jpg" alt="Product 3" />
+            <h3>Продукт 3</h3>
+            <p>Описание продукта 3</p>
+            <span class="price">Цена: 3000 руб.</span>
+            <button class="add-to-cart">Добавить в корзину</button>
+          </div>
+          <div class="product-item">
+            <img src="https://mebeldavinci.ru/upload/resize_cache/iblock/94e/600_600_140cd750bba9870f18aada2478b24840a/13mh0opoomeav0anhecwu0ug6s68bx4r.jpg" alt="Product 4" />
+            <h3>Продукт 4</h3>
+            <p>Описание продукта 4</p>
+            <span class="price">Цена: 4000 руб.</span>
+            <button class="add-to-cart">Добавить в корзину</button>
+        </div>
+      </section>
+    </main>
+    <div class="cart">
+      <h2>Корзина</h2>
+      <ul class="cart-items">
+      </ul>
+      <p class="cart-total-price">Итого: <span id="cart-price">0</span> руб.</p>
+      <button class="cart-checkout">Оформить заказ</button>
+    </div>
+    <script src="script.js"></script>
+    <footer>
+      <p>&copy; 2023 Интернет-магазин. Все права защищены.</p>
+  </body>
+</html>
