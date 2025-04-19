@@ -9,45 +9,44 @@ function ready() {
 
   const buttons = document.querySelectorAll(".add-to-cart");
   buttons.forEach((button) => {
-    button.addEventListener("click", buy);
+    button.addEventListener("click", cart);
   });
 }
 
-function buy() {
+function cart() {
+  // получаем родительский элемент с классом product-item
+  // и находим внутри него элементы h3, span и img
+
   closest = this.closest(".product-item");
   productCard = closest.querySelector("h3").innerText;
   productPrice = closest.querySelector("span").innerText;
   productImage = closest.querySelector("img").src;
-  //   console.log(productCard);
-  cart();
-}
-
-function cart() {
+  
   const cart = document.querySelector(".cart");
-  const cartItem = document.createElement("div");
   const cartItems = cart.querySelectorAll(".cart-items");
-  const cartButton = cart.querySelector(".cart-checkout");
-
+  const cartButton = document.getElementById("cart-checkout-button");
+  
+  const cartItem = document.createElement("div");
+  const cartItemDelete = document.createElement("button");
+  
+  cartItem.classList.add("cart-item-info"); // добавляем класс к элементу
+  cartItemDelete.classList.add("cart-item-delete"); // добавляем класс к элементу
+  
   // переоброзование в число
-
-  const cartTotalElement = cart.querySelector(".cart-price");
+  
+  const cartTotalElement = document.getElementById("cart-total-price");
   const cartTotal = parseInt(cartTotalElement.innerText) || 0;
-  
-  
-  cartItem.classList.add("cart-item");
-  cartItem.innerHTML = `<div class="cart-item-info"><h3>${productCard}:</h3><span class="cart-product-price">${productPrice}</span></div>`;
   const numericProductPrice = parseInt(productPrice.replace(/[^\d]/g, "")) || 0;
+  const cartProductPrice = numericProductPrice
+  
+  cartItem.innerHTML = `<img src="${productImage}" alt="${productCard}" class="cart-item-img"><h3 class="cart-product-name">${productCard}</h3><span class="cart-product-price">${cartProductPrice}</span>`;
+  
   cartItems[0].appendChild(cartItem);
 
   var newTotal = cartTotal + numericProductPrice;
   cartTotalElement.innerText = newTotal;
 
   cartButton.addEventListener("click", function () {
-    alert("Thank you for your order!");
-
-    cartItems[0].innerHTML = "";
-    newTotal = 0;
-    cartTotalElement.innerText = newTotal;
-  })
-
+    alert("ty 4 pokupku");
+  });
 }

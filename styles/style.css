@@ -112,6 +112,23 @@
   margin-bottom: 20px;
   font-size: 2rem;
 }
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+.cart-header-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  font-size: 1.2rem;
+  color: #333;
+}
 .cart-item {
   display: flex;
   justify-content: space-between;
@@ -119,17 +136,31 @@
   padding: 10px 0;
   border-bottom: 1px solid #ddd;
 }
-.cart-item-info{
+.cart-items {
   display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.cart-item-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
-  h3{
-    font-size: 1.2rem;
-    margin: 0 10px;
-  }
-  span{
-    font-size: 1rem;
-    color: #666;
-  }
+}
+.cart-item-img {
+  width: 100%;
+  height: 100%;
+}
+.cart-product-name {
+  font-size: 1.2rem;
+  color: #333;
+  margin-left: 10px;
+  text-align: left;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.cart-product-price {
+  font-size: 1.2rem;
+  color: #333;
 }
 .cart-total-price {
   font-size: 1.5rem;
@@ -137,19 +168,33 @@
   margin-top: 20px;
   text-align: right;
 }
-.cart-checkout{
-    background-color: #28a745;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    display: block;
-    margin: 20px auto;
-    max-width: 200px;
-    &&:hover {
-        background-color: #218838;
-    }
+.cart-checkout {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  margin: 20px auto;
+  max-width: 200px;
+  &&:hover {
+    background-color: #218838;
+  }
 }
-
+.cart-clear {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  margin: 5px auto;
+  max-width: 200px;
+  &&:hover {
+    background-color: #c82333;
+  }
+}
