@@ -1,12 +1,5 @@
 document.addEventListener("DOMContentLoaded", domLoaded);
 
-let productCard = null;
-let productPrice = null;
-let productImage = null;
-
-let cartItems = null;
-let nowTotal = 0;
-
 function domLoaded() {
   const buttonsOnCard = document.querySelectorAll(".add-to-cart");
   buttonsOnCard.forEach((button) => {
@@ -23,16 +16,16 @@ function domLoaded() {
 
 function addToCart() {
   closest = this.closest(".product-item");
-  productCard = closest.querySelector("h3").innerText;
-  productPrice = closest.querySelector("span").innerText;
-  const numericProductPrice = parseInt(productPrice.replace(/[^\d]/g, "")) || 0;
-  productImage = closest.querySelector("img").src;
+  const productCard = closest.querySelector("h3").innerText;
+  const productPrice = Number(closest.querySelector("span").getAttribute("data-price"));
+  const productImage = closest.querySelector("img").src;
   
   const cart = document.querySelector(".cart");
   cartItems = cart.querySelectorAll(".cart-items");
   
   const cartItem = document.createElement("li");
   cartItem.classList.add("cart-item-info");
+  cartItem.setAttribute("data-price", productPrice)
   
   const itemImg = document.createElement("img");
   itemImg.src = productImage;
@@ -45,12 +38,11 @@ function addToCart() {
   
   const itemPrice = document.createElement("p");
   itemPrice.classList.add("cart-item-price");
-  itemPrice.textContent = numericProductPrice;
+  itemPrice.textContent = productPrice;
 
   const itemRemoveBtn = document.createElement("button");
   itemRemoveBtn.textContent = "Удалить";
   itemRemoveBtn.classList.add("cart-remove-btn");
-  itemRemoveBtn.id = 'cart-removebtn'
   
   const cartTotalElement = document.getElementById("cart-total-price");
   const cartTotal = parseInt(cartTotalElement.innerText) || 0;
@@ -59,10 +51,10 @@ function addToCart() {
   cartItem.append(itemImg, itemName, itemPrice, itemRemoveBtn);
   
   
-  nowTotal = cartTotal + numericProductPrice;
+  nowTotal = cartTotal + productPrice;
   cartTotalElement.innerText = nowTotal;
 
-  cartRemove(itemRemoveBtn, cartTotalElement, numericProductPrice);
+  cartRemove(itemRemoveBtn, cartTotalElement, productPrice);
 }
 function cartcheckout() {
   const parent = document.querySelector(".cart-items");
@@ -84,14 +76,11 @@ function cartClear() {
   nowTotal = 0;
   NowTotalElement.innerText = nowTotal;
 }
-function cartRemove(removeBtn, cartTotalElement, numericProductPrice){
-  removeBtn.addEventListener("click", function() {
-    const parent = document.querySelector(".cart-items");
-    const lastchild = parent.lastElementChild;
-
-    lastchild.remove();
-
-    nowTotal = nowTotal - numericProductPrice;
+function cartRemove(removeBtn, cartTotalElement, productPrice){
+  removeBtn.addEventListener("click", function () {
+    const item = this.closest(".cart-item-info");
+    item.remove();
+    nowTotal -= productPrice;
     cartTotalElement.innerText = nowTotal;
-  })
+  });
 }
