@@ -162,6 +162,16 @@
   font-size: 1.2rem;
   color: #333;
 }
+.cart-remove-btn {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  max-width: 50%;
+}
 .cart-total-price {
   font-size: 1.5rem;
   color: #333;

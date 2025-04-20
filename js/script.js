@@ -1,52 +1,67 @@
-document.addEventListener("DOMContentLoaded", ready);
+document.addEventListener("DOMContentLoaded", domLoaded);
 
 let productCard = null;
 let productPrice = null;
 let productImage = null;
 
-function ready() {
-  console.log("DOM loaded");
+let cartItems = null;
 
-  const buttons = document.querySelectorAll(".add-to-cart");
-  buttons.forEach((button) => {
-    button.addEventListener("click", cart);
+
+function domLoaded() {
+  const buttonsOnCard = document.querySelectorAll(".add-to-cart");
+  buttonsOnCard.forEach((button) => {
+    button.addEventListener("click", addToCart);
   });
+
+  const checkoutbtn = document.getElementById("cart-checkoutbtn")
+  checkoutbtn.addEventListener("click", cartcheckout)
+  
+  const cleatbtn = document.getElementById("cart-clearbtn")
+  cleatbtn.addEventListener("click", cartClear)
 }
 
-function cart() {
-  // получаем родительский элемент с классом product-item
-  // и находим внутри него элементы h3, span и img
-
+function addToCart() {
   closest = this.closest(".product-item");
   productCard = closest.querySelector("h3").innerText;
   productPrice = closest.querySelector("span").innerText;
   productImage = closest.querySelector("img").src;
-  
+
   const cart = document.querySelector(".cart");
-  const cartItems = cart.querySelectorAll(".cart-items");
-  const cartButton = document.getElementById("cart-checkout-button");
-  
+  cartItems = cart.querySelectorAll(".cart-items");
+
   const cartItem = document.createElement("div");
-  const cartItemDelete = document.createElement("button");
-  
-  cartItem.classList.add("cart-item-info"); // добавляем класс к элементу
-  cartItemDelete.classList.add("cart-item-delete"); // добавляем класс к элементу
-  
-  // переоброзование в число
-  
+  cartItem.classList.add("cart-item-info");
+
+  const img = document.createElement("img");
+  img.src = productImage;
+  img.alt = productCard;
+  img.classList.add("cart-item-img");
+
+  const name = document.createElement("h3");
+  name.textContent = productCard;
+  name.classList.add("cart-product-name");
+
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "Удалить";
+  removeBtn.classList.add("cart-remove-btn");
+
   const cartTotalElement = document.getElementById("cart-total-price");
   const cartTotal = parseInt(cartTotalElement.innerText) || 0;
   const numericProductPrice = parseInt(productPrice.replace(/[^\d]/g, "")) || 0;
-  const cartProductPrice = numericProductPrice
-  
-  cartItem.innerHTML = `<img src="${productImage}" alt="${productCard}" class="cart-item-img"><h3 class="cart-product-name">${productCard}</h3><span class="cart-product-price">${cartProductPrice}</span>`;
-  
+
   cartItems[0].appendChild(cartItem);
+  cartItem.append(img, name, numericProductPrice, removeBtn);
 
-  var newTotal = cartTotal + numericProductPrice;
-  cartTotalElement.innerText = newTotal;
+  const nowTotal = cartTotal + numericProductPrice;
+  cartTotalElement.innerText = nowTotal;
 
-  cartButton.addEventListener("click", function () {
-    alert("ty 4 pokupku");
-  });
+}
+function cartcheckout() {
+  alert("ty 4 pokupka");
+}
+
+function cartClear(){
+  document.querySelectorAll('.cart-item-info').forEach(el => el.remove());
+  
+  
 }
